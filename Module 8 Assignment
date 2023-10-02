@@ -1,0 +1,191 @@
+import 'package:flutter/material.dart';
+
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Bismillahir Rahmanir Raheem'),
+        centerTitle: true,
+      ),
+      body: Column(
+        children: [
+          Flexible(
+            child: LayoutBuilder(builder: (context, constraints) {
+              print(constraints.maxWidth);
+
+              /// eta Landscape setup
+              if (constraints.maxWidth > 500) {
+                /// ei Required Reached korle nicher value ta return korbe Noyto Default portrait setup show korbe
+                return Container(
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
+                  //color: Colors.lightGreenAccent,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Flexible(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: ClipOval(
+                                  child: Container(
+                                child: Image.network(
+                                  'https://www.quran-al-mubeen.com/uploads/2/6/8/1/26819534/7906737_orig.jpg',
+                                  fit: BoxFit.cover,
+                                ),
+                                height: 300,
+                                width: 290,
+                                //color: Colors.blue,
+                              )),
+                            ),
+                          ],
+                        ),
+                        flex: 0,
+                      ),
+                      Flexible(
+                        flex: 1,
+                        child: Container(
+                          height: 305,
+                          width: 420,
+                          //color: Colors.teal,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Wrap(children: [
+                                Text('  Universe Creator Names:-',
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w500)),
+                                SizedBox(
+                                  height: 40,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 12,bottom: 3,),
+                                  child: SizedBox( /// i can use also Container
+                                    child: Text(
+                                      'AL-KHAALIQ	The Creator, The Maker; AL-MUTAKABBIR	The Supreme, The Majestic; AL-QAHHAR	The Subduer, The Ever-Dominating; AL-WAHHAAB	The Giver of Gifts; AL-FATTAAH	The Opener, The Judge',
+                                      maxLines: 4,
+                                      style:
+                                          TextStyle(fontWeight: FontWeight.bold),
+                                    ),
+                                    width: 400,
+                                  ),
+                                )
+                              ]),
+                              Flexible(
+                                child: Container(
+                                  height: 200,
+                                  width: 420,
+                                 // color: Colors.yellow,
+                                  child: GridView.builder(
+                                      gridDelegate:
+                                          SliverGridDelegateWithFixedCrossAxisCount(
+                                              crossAxisCount: 3),
+
+                                      /// per Row te 3 ta kore show korbe
+                                      itemCount: 9,
+                                      itemBuilder: (context, index) {
+                                        return ListTile(
+                                          title: Image.network(
+                                              'https://www.shutterstock.com/shutterstock/photos/2337524455/display_1500/stock-vector--al-atheem-names-of-allah-al-asma-ul-husna-2337524455.jpg'),
+                                        );
+                                      }),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                );
+              } else {
+                return Column(
+                  children: [
+                    OrientationBuilder(builder: (context, orientation) {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(6.0),
+                            child: ClipOval(
+                                child: Image.network(
+                              orientation == Orientation.portrait
+                                  ? 'https://www.quran-al-mubeen.com/uploads/2/6/8/1/26819534/7906737_orig.jpg'
+                                  : 'https://www.quran-al-mubeen.com/uploads/2/6/8/1/26819534/7906737_orig.jpg',
+                              height: 380,
+                              width: 380,
+                              fit: BoxFit.cover,
+                            )),
+                          ),
+                        ],
+                      );
+                    }),
+                    Flexible(
+                      child: Container(
+                        height: 400,
+                        width: MediaQuery.of(context).size.width,
+                       // color: Colors.orange,
+                        child: Column(
+                          children: [
+                            Wrap(
+                              children: [
+                                Text(
+                                  'Universe Creator Names:-',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                SizedBox(
+                                  height: 40,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(6.0),
+                                  child: Text(
+                                    'AL-KHAALIQ	The Creator, The Maker; AL-MUTAKABBIR	The Supreme, The Majestic; AL-QAHHAR	The Subduer, The Ever-Dominating; AL-WAHHAAB	The Giver of Gifts; AL-FATTAAH	The Opener, The Judge',
+                                    maxLines: 4,
+                                    style: TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ],
+                              alignment: WrapAlignment.center,
+                            ),
+                            Flexible(
+                              child: Container(
+                                height: 200,
+                                width: 400,
+                                //color: Colors.green,
+                                child: GridView.builder(
+                                    gridDelegate:
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                            crossAxisCount: 3),
+
+                                    ///GridView Required direct From child otherwise Show error or nothing
+                                    itemCount: 9,
+                                    itemBuilder: (context, index) {
+                                      return ListTile(
+                                        title: Image.network(
+                                            'https://www.shutterstock.com/shutterstock/photos/2337524455/display_1500/stock-vector--al-atheem-names-of-allah-al-asma-ul-husna-2337524455.jpg'),
+                                      );
+                                    }),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
+                );
+              }
+            }),
+          ),
+        ],
+      ),
+    );
+  }
+}
